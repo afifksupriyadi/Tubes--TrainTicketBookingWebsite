@@ -1,0 +1,166 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* Reset and general styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+    box-sizing: border-box;
+}
+
+/* Body background color */
+body {
+    background-color: #f7f7f7; /* Light gray */
+}
+
+/* Header styles */
+header {
+    position: fixed; /* Stick header to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff; /* White header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    z-index: 1000; /* Ensure header is above other content */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.header-logo h1 {
+    font-size: larger;
+    font-weight: 1000;
+    color: #0C77AC;
+}
+
+.header-middle img {
+    width: 150px;
+    color: #0C77AC;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Link styles */
+.header-actions a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 1000;
+    color: #0C77AC;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+/* Highlight the active link */
+.header-actions a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.header-actions img {
+    width: 28px;
+    border-radius: 50%;
+}
+
+/* Blue line below header */
+.header-line {
+    width: 100%;
+    background-color: #0C77AC; /* Blue color */
+    margin-top: 15px;
+}
+
+/* Main content (form container) styles */
+main {
+    margin-top: 180px; /* Space below the fixed header */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align form slightly higher */
+    height: calc(100vh - 120px); /* Fill remaining space below header */
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Widen the form */
+    border: 0px solid #0C77AC;
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0C77AC;
+    margin-bottom: 20px;
+}
+
+/* Arrange form groups in two columns */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    width: 48%; /* Each form group takes up half the row */
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0C77AC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group select {
+    appearance: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border: 2px solid #0C77AC;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-submit input {
+    width: 100px;
+    padding: 10px;
+    background-color: #0C77AC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-submit input:hover {
+    background-color: #005f8b;
+}
+

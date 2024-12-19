@@ -1,0 +1,421 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f7f7;
+}
+
+/* Header styles */
+header {
+    position: fixed; /* Stick header to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff; /* White header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    z-index: 1000; /* Ensure header is above other content */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.header-logo h1 {
+    font-size: larger;
+    font-weight: 1000;
+    color: #0C77AC;
+}
+
+.header-middle img {
+    width: 150px;
+    color: #0C77AC;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Link styles */
+.header-actions a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 1000;
+    color: #0C77AC;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+/* Highlight the active link */
+.header-actions a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.header-actions img {
+    width: 28px;
+    border-radius: 50%;
+}
+
+/* Blue line below header */
+.header-line {
+    width: 100%;
+    background-color: #0C77AC; /* Blue color */
+    margin-top: 15px;
+}
+
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position below the icon */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 1000;
+    text-align: left;
+    display: none;
+    font-size: 14px;
+}
+
+/* Dropdown menu visible state */
+.dropdown-menu.visible {
+    display: block;
+}
+
+/* Links inside dropdown */
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hide the dropdown menu by default */
+.hidden {
+    display: none;
+}
+
+.outer-container {
+    margin-top: -150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.main-container {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    width: 868px;
+    height: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.ticket-container {
+    background-color: rgba(12, 119, 172, 0.12);
+    border-radius: 8px;
+    height: 100%;
+    padding: 30px;
+    position: relative;
+}
+
+.ticket-container h1 {
+    text-align: center;
+    color: #0C77AC;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.form-group {
+    position: relative; /* Ensure the form-group acts as a positioning reference */
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: 100%; /* Directly below the input */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 9999; /* Ensure it's above other elements */
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Enable scrolling */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-list div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-list div:hover {
+    background-color: #f0f0f0;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.form-group-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0C77AC;
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #0C77AC;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-group input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.form-group select {
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group img {
+    width: 20px;
+    height: 20px;
+}
+
+.form-group .separator {
+    width: 1px;
+    background-color: #0C77AC;
+    height: 80%;
+    margin: 0 10px;
+}
+
+.btn-submit {
+    display: block;
+    margin: 20px auto 0;
+    width: 150px;
+    padding: 10px;
+    background-color: #0C77AC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #005fa3;
+}
+
+
+/* Results Container */
+.results-container {
+    margin-top: 10px; /* Reduced gap between the form and results */
+    width: 868px; /* Matches the search form width */
+    margin-left: auto;
+    margin-right: auto; /* Center align the results container */
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Date Navigation Container */
+.date-navigation-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #0C77AC; /* Blue background for navigation */
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px; /* Reduced gap with results */
+    width: 868px; /* Matches the container width */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:-250px;
+    margin-bottom: 10px;
+}
+
+/* Navigation Buttons */
+.nav-date-button {
+    background: white; /* Highlighted button with white background */
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Ensure consistent size */
+    height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-date-button img {
+    width: 24px; /* Adjust icon size */
+    height: 24px;
+}
+
+.nav-date-button:disabled {
+    background: #e0e0e0; /* Disabled button */
+    cursor: not-allowed;
+    border: 1px solid #bbb;
+}
+
+/* Current Date Info */
+.date-info {
+    text-align: center;
+}
+
+.date-info span {
+    display: block;
+}
+
+.date-info .station-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.date-info .availability-text {
+    font-size: 14px;
+}
+
+/* Train Card */
+.train-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Train Info Section */
+.train-info {
+    flex: 3;
+}
+
+.train-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0C77AC;
+}
+
+.train-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Train Time Details */
+.train-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.train-time img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Train Actions Section */
+.train-actions {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Jarak antar elemen */
+}
+
+/* Harga */
+.train-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF6F00; /* Warna harga */
+    margin-bottom: 5px; /* Jarak ke tombol */
+}
+
+/* Tombol Reservasi */
+.btn-reservasi {
+    background-color: #FFA500;
+    padding: 8px 12px; /* Ukuran lebih kecil */
+    width: 150px; /* Lebar tombol diperkecil */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 auto; /* Posisi tombol di tengah */
+}
+
+.btn-reservasi:hover {
+    background-color: #ff9500; /* Warna hover */
+}
+
+.train-capacity {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 5px; /* Jarak dari tombol */
+}
+
+

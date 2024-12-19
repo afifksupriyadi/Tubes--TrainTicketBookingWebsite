@@ -1,0 +1,167 @@
+CREATE database keretakuy;
+use keretakuy;
+
+create table user (
+	idUser int(3) zerofill auto_increment primary key,
+    nama VARCHAR(50),
+	email VARCHAR(30),
+    gender ENUM('Laki-laki','Perempuan'),
+    tanggalLahir DATE,
+    username VARCHAR(20),
+    passwrd VARCHAR(20)
+);
+
+
+CREATE TABLE Kereta (
+    idKereta INT(2) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    kapasitas INT NOT NULL,
+    hargaKereta INT
+);
+
+
+CREATE TABLE Stasiun (
+    idStasiun INT(3) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Rute (
+    idRute INT AUTO_INCREMENT PRIMARY KEY,
+    idKereta INT(2) ZEROFILL,
+    idStasiunAsal INT(3) ZEROFILL,
+    idStasiunTujuan INT(3) ZEROFILL,
+    departureTime TIME NOT NULL,
+    arrivalTime TIME NOT NULL,
+    distance INT NOT NULL,
+    capacity INT NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (idKereta) REFERENCES Kereta(idKereta),
+    FOREIGN KEY (idStasiunAsal) REFERENCES Stasiun(idStasiun),
+    FOREIGN KEY (idStasiunTujuan) REFERENCES Stasiun(idStasiun)
+);
+
+CREATE TABLE TicketBooked (
+    idBooked INT AUTO_INCREMENT PRIMARY KEY,
+    idUser INT(3) ZEROFILL NOT NULL,
+    idKereta INT(2) ZEROFILL NOT NULL,
+    idStasiunAsal INT(3) ZEROFILL NOT NULL,
+    idStasiunTujuan INT(3) ZEROFILL NOT NULL,
+    departureTime TIME NOT NULL,
+    arrivalTime TIME NOT NULL,
+    tanggalKeberangkatan DATE NOT NULL,
+    jumlahPenumpang INT NOT NULL,
+    harga INT NOT NULL, -- Harga tiket
+    waktuBooking DATETIME NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (idUser) REFERENCES User(idUser),
+    FOREIGN KEY (idKereta) REFERENCES Kereta(idKereta),
+    FOREIGN KEY (idStasiunAsal) REFERENCES Stasiun(idStasiun),
+    FOREIGN KEY (idStasiunTujuan) REFERENCES Stasiun(idStasiun)
+);
+
+INSERT INTO Kereta (nama, kapasitas,hargaKereta)
+VALUES
+('Pasundan', 10,500),
+('Pangandaran', 10,1000);
+select * from Kereta;
+
+INSERT INTO Stasiun (nama)
+VALUES
+('Bandung'),
+('Tasikmalaya'),
+('Ciamis'),
+('Banjar'),
+('Kroya'),
+('Yogyakarta'),
+('Sragen'),
+('Madiun'),
+('Jombang'),
+('Surabaya'),
+('Jakarta'),
+('Bekasi'),
+('Cimahi'),
+('Cilacap');
+
+
+-- Data untuk kereta Pasundan pada tanggal 20, 21, 22, dan 23 Desember 2024
+INSERT INTO Rute (idKereta, idStasiunAsal, idStasiunTujuan, departureTime, arrivalTime, distance, capacity, date)
+VALUES
+-- 20 Desember 2024
+(01, 001, 002, '06:00:00', '07:30:00', 70, 10, '2024-12-20'), -- Bandung to Tasikmalaya
+(01, 002, 003, '07:45:00', '08:15:00', 40, 10, '2024-12-20'), -- Tasikmalaya to Ciamis
+(01, 003, 004, '08:30:00', '09:00:00', 40, 10, '2024-12-20'), -- Ciamis to Banjar
+(01, 004, 005, '09:15:00', '10:45:00', 50, 10, '2024-12-20'), -- Banjar to Kroya
+(01, 005, 006, '11:00:00', '13:00:00', 120, 10, '2024-12-20'), -- Kroya to Yogyakarta
+(01, 006, 007, '13:15:00', '14:45:00', 80, 10, '2024-12-20'), -- Yogyakarta to Sragen
+(01, 007, 008, '15:00:00', '16:30:00', 100, 10, '2024-12-20'), -- Sragen to Madiun
+(01, 008, 009, '16:45:00', '17:45:00', 110, 10, '2024-12-20'), -- Madiun to Jombang
+(01, 009, 010, '18:00:00', '19:30:00', 90, 10, '2024-12-20'), -- Jombang to Surabaya
+-- 21 Desember 2024
+(01, 001, 002, '06:00:00', '07:30:00', 70, 10, '2024-12-21'),
+(01, 002, 003, '07:45:00', '08:15:00', 40, 10, '2024-12-21'),
+(01, 003, 004, '08:30:00', '09:00:00', 40, 10, '2024-12-21'),
+(01, 004, 005, '09:15:00', '10:45:00', 50, 10, '2024-12-21'),
+(01, 005, 006, '11:00:00', '13:00:00', 120, 10, '2024-12-21'),
+(01, 006, 007, '13:15:00', '14:45:00', 80, 10, '2024-12-21'),
+(01, 007, 008, '15:00:00', '16:30:00', 100, 10, '2024-12-21'),
+(01, 008, 009, '16:45:00', '17:45:00', 110, 10, '2024-12-21'),
+(01, 009, 010, '18:00:00', '19:30:00', 90, 10, '2024-12-21'),
+-- 22 Desember 2024
+(01, 001, 002, '06:00:00', '07:30:00', 70, 10, '2024-12-22'),
+(01, 002, 003, '07:45:00', '08:15:00', 40, 10, '2024-12-22'),
+(01, 003, 004, '08:30:00', '09:00:00', 40, 10, '2024-12-22'),
+(01, 004, 005, '09:15:00', '10:45:00', 50, 10, '2024-12-22'),
+(01, 005, 006, '11:00:00', '13:00:00', 120, 10, '2024-12-22'),
+(01, 006, 007, '13:15:00', '14:45:00', 80, 10, '2024-12-22'),
+(01, 007, 008, '15:00:00', '16:30:00', 100, 10, '2024-12-22'),
+(01, 008, 009, '16:45:00', '17:45:00', 110, 10, '2024-12-22'),
+(01, 009, 010, '18:00:00', '19:30:00', 90, 10, '2024-12-22'),
+-- 23 Desember 2024
+(01, 001, 002, '06:00:00', '07:30:00', 70, 10, '2024-12-23'),
+(01, 002, 003, '07:45:00', '08:15:00', 40, 10, '2024-12-23'),
+(01, 003, 004, '08:30:00', '09:00:00', 40, 10, '2024-12-23'),
+(01, 004, 005, '09:15:00', '10:45:00', 50, 10, '2024-12-23'),
+(01, 005, 006, '11:00:00', '13:00:00', 120, 10, '2024-12-23'),
+(01, 006, 007, '13:15:00', '14:45:00', 80, 10, '2024-12-23'),
+(01, 007, 008, '15:00:00', '16:30:00', 100, 10, '2024-12-23'),
+(01, 008, 009, '16:45:00', '17:45:00', 110, 10, '2024-12-23'),
+(01, 009, 010, '18:00:00', '19:30:00', 90, 10, '2024-12-23');
+
+
+-- Data untuk kereta Pangandaran pada tanggal 20, 21, 22, dan 23 Desember 2024
+INSERT INTO Rute (idKereta, idStasiunAsal, idStasiunTujuan, departureTime, arrivalTime, distance, capacity, date)
+VALUES
+-- 20 Desember 2024
+(02, 011, 012, '09:30:00', '09:45:00', 20, 10, '2024-12-20'), -- Jakarta to Bekasi
+(02, 012, 013, '09:50:00', '10:30:00', 120, 10, '2024-12-20'), -- Bekasi to Cimahi
+(02, 013, 001, '10:50:00', '11:15:00', 10, 10, '2024-12-20'), -- Cimahi to Bandung
+(02, 001, 002, '11:15:00', '13:00:00', 70, 10, '2024-12-20'), -- Bandung to Tasikmalaya
+(02, 002, 003, '13:15:00', '13:45:00', 40, 10, '2024-12-20'), -- Tasikmalaya to Ciamis
+(02, 003, 004, '14:00:00', '14:30:00', 40, 10, '2024-12-20'), -- Ciamis to Banjar
+(02, 004, 014, '14:45:00', '16:00:00', 70, 10, '2024-12-20'), -- Banjar to Cilacap
+-- 23 Desember 2024
+(02, 011, 012, '09:30:00', '09:45:00', 20, 10, '2024-12-21'),
+(02, 012, 013, '09:50:00', '10:30:00', 120, 10, '2024-12-21'),
+(02, 013, 001, '10:50:00', '11:15:00', 10, 10, '2024-12-21'),
+(02, 001, 002, '11:15:00', '13:00:00', 70, 10, '2024-12-21'),
+(02, 002, 003, '13:15:00', '13:45:00', 40, 10, '2024-12-21'),
+(02, 003, 004, '14:00:00', '14:30:00', 40, 10, '2024-12-21'),
+(02, 004, 014, '14:45:00', '16:00:00', 70, 10, '2024-12-21'),
+-- 23 Desember 2024
+(02, 011, 012, '09:30:00', '09:45:00', 20, 10, '2024-12-22'),
+(02, 012, 013, '09:50:00', '10:30:00', 120, 10, '2024-12-22'),
+(02, 013, 001, '10:50:00', '11:15:00', 10, 10, '2024-12-22'),
+(02, 001, 002, '11:15:00', '13:00:00', 70, 10, '2024-12-22'),
+(02, 002, 003, '13:15:00', '13:45:00', 40, 10, '2024-12-22'),
+(02, 003, 004, '14:00:00', '14:30:00', 40, 10, '2024-12-22'),
+(02, 004, 014, '14:45:00', '16:00:00', 70, 10, '2024-12-22'),
+-- 23 Desember 2024
+(02, 011, 012, '09:30:00', '09:45:00', 20, 10, '2024-12-23'),
+(02, 012, 013, '09:50:00', '10:30:00', 120, 10, '2024-12-23'),
+(02, 013, 001, '10:50:00', '11:15:00', 10, 10, '2024-12-23'),
+(02, 001, 002, '11:15:00', '13:00:00', 70, 10, '2024-12-23'),
+(02, 002, 003, '13:15:00', '13:45:00', 40, 10, '2024-12-23'),
+(02, 003, 004, '14:00:00', '14:30:00', 40, 10, '2024-12-23'),
+(02, 004, 014, '14:45:00', '16:00:00', 70, 10, '2024-12-23');
+
+
+
