@@ -3,47 +3,57 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
+
 import java.sql.*;
 import model.User;
+
 /**
  *
  * @author LENOVO
  */
 public class LoginDAO {
-    private final String DB_URL = "jdbc:mysql://localhost:3306/keretakuy"; 
-    private final String DB_USER = "root"; 
-    private final String DB_PASSWORD = ""; 
-    
-    public boolean validate(User user) {
-        boolean status = false;
-        
+
+    private final String DB_URL = "jdbc:mysql://localhost:3306/keretakuy";
+    private final String DB_USER = "root";
+    private final String DB_PASSWORD = "";
+
+    public User getUserIfValid(User user) {
+        User retrievedUser = null;
         try {
-            // Step 1: Load JDBC driver
+            // Load JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
-            
-            // Step 2: Establish database connection
+
+            // Establish database connection
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            
-            // Step 3: Prepare SQL query
+
+            // Prepare SQL query
             String query = "SELECT * FROM user WHERE username=? AND passwrd=?";
             PreparedStatement statement = connection.prepareStatement(query);
-            
-            // Step 4: Set parameters
+
+            // Set parameters
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
-            
-            // Step 5: Execute query
+
+            // Execute query
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                status = true;
+                // Create a User object from the result set
+                retrievedUser = new User(
+                        rs.getString("nama"),
+                        rs.getString("email"),
+                        rs.getString("gender"),
+                        rs.getString("tanggalLahir"),
+                        rs.getString("username"),
+                        rs.getString("passwrd")
+                );
             }
-            
-            // Step 6: Close connection
+
+            // Close resources
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        return status;
+        return retrievedUser;
     }
+
 }

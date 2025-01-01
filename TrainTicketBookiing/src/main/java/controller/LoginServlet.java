@@ -45,9 +45,6 @@ public class LoginServlet extends HttpServlet {
             case "/logout":
                 logoutUser(request, response); // Handles user logout
                 break;
-            default:
-                response.sendRedirect("login.jsp"); // Default page (login page)
-                break;
         }
     }
 
@@ -87,18 +84,21 @@ public class LoginServlet extends HttpServlet {
         user.setUsername(username);
         user.setPassword(password);
 
-        // Validate login credentials
-        if (loginDAO.validate(user)) {
-            // Set HTTP session for user
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+        // Gunakan metode getUserIfValid untuk mendapatkan data lengkap pengguna
+        User loggedInUser = loginDAO.getUserIfValid(user);
 
-            // Redirect to homepage (to be created)
+        if (loggedInUser != null) {
+            // Simpan objek User lengkap dalam sesi
+            HttpSession session = request.getSession();
+            session.setAttribute("user", loggedInUser);
+
+            // Redirect ke homepage
             response.sendRedirect("homepage");
         } else {
-            // Invalid login - Redirect back to login page with an error
+            // Jika login gagal
             response.sendRedirect("login.jsp?error=invalid");
         }
+
     }
 
     // Logout Logic

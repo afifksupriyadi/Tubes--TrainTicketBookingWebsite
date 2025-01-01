@@ -1,13 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@page import="model.User" %>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
 
     // Check if the user session exists
-    String username = (String) session.getAttribute("username");
-    if (username == null) {
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
         response.sendRedirect("login.jsp");
         return;
     }
@@ -168,7 +169,22 @@
                             <span>Rp ${train.harga}</span>
                         </div>
                         <!-- Tombol Reservasi -->
-                        <button class="btn-reservasi">Reservasi</button>
+                        <form action="booking" method="GET" style="display: inline;">
+                            <input type="hidden" name="namaKereta" value="${train.namaKereta}">
+                            <input type="hidden" name="nomorKereta" value="${train.nomorKereta}">
+                            <input type="hidden" name="stasiunAsal" value="${train.stasiunAsal}">
+                            <input type="hidden" name="stasiunTujuan" value="${train.stasiunTujuan}">
+                            <input type="hidden" name="departureTime" value="${train.departureTime}">
+                            <input type="hidden" name="arrivalTime" value="${train.arrivalTime}">
+                            <input type="hidden" name="availableCapacity" value="${train.availableCapacity}">
+                            <input type="hidden" name="totalDistance" value="${train.totalDistance}">
+                            <input type="hidden" name="harga" value="${train.harga}">
+                            <input type="hidden" name="tanggalKeberangkatan" value="${param.tanggal}">
+                            <input type="hidden" name="jumlahPenumpang" value="${param.jumlahPenumpang}">
+                            <button class="btn-reservasi" type="submit">Reservasi</button>
+                        </form>
+
+
                         <!-- Kursi Tersedia -->
                         <div class="train-capacity">
                             <span>${train.availableCapacity} kursi tersedia</span>
@@ -176,11 +192,9 @@
                     </div>
                 </div>
             </c:forEach>
-
-
             <!-- Jika Tidak Ada Data -->
             <c:if test="${empty trainResults}">
-                <p style="text-align: center; color: red;">Tidak ada kereta yang ditemukan untuk tanggal tersebut.</p>
+                <p style="text-align: center; color: red;">Tidak ada kereta yang ditemukan.</p>
             </c:if>
         </div>
     </div>

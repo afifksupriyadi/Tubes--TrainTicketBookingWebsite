@@ -10,6 +10,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakartaee>10.0.0</jakartaee>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>$Dieschan4Ln</sonar.password>
     </properties>
     
     <dependencies>
@@ -53,6 +55,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
             </plugin>
         </plugins>
     </build>
