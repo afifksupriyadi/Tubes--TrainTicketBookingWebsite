@@ -79,7 +79,7 @@ public class BookingServlet extends HttpServlet {
             request.setAttribute("jumlahPenumpang", jumlahPenumpang);
 
             // Redirect ke booking-tiket.jsp
-            RequestDispatcher dispatcher = request.getRequestDispatcher("booking-tiket.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("booking-tiket-2.jsp");
             dispatcher.forward(request, response);
 
         } catch (NumberFormatException e) {

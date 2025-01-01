@@ -1,0 +1,112 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F7F7F7;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-kereta {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(12, 119, 172, 0.12);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.kereta-detail h3 {
+    margin: 0;
+    color: #0C77AC;
+    font-size: 18px;
+}
+
+.kereta-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rincian-biaya {
+    text-align: right;
+}
+
+.rincian-biaya h3, .rincian-biaya p {
+    margin: 5px 0;
+}
+
+.rincian-biaya h3 {
+    color: #FF6F00;
+}
+
+.data-penumpang {
+    background-color: rgba(12, 119, 172, 0.12);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.penumpang {
+    margin-bottom: 20px;
+}
+
+.penumpang h4 {
+    margin: 0 0 10px 0;
+    color: #0C77AC;
+    font-size: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    padding: 8px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+
+.btn-pesan {
+    background-color: #0C77AC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: block;
+    max-width: 150px; /* Lebar maksimal tombol */
+    text-align: center;
+}
+
+.btn-pesan:hover {
+    background-color: #005fa3;
+}
+
