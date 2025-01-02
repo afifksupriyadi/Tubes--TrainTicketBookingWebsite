@@ -72,6 +72,7 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("previousDate", previousDate);
         request.setAttribute("nextDate", nextDate);
         request.setAttribute("currentSearchDate", tanggal);
+        request.setAttribute("jumlahPenumpang", jumlahPenumpang);
 
         // Forward to search results JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("searching-result.jsp");

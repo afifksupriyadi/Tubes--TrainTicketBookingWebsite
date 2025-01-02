@@ -7,10 +7,15 @@ controller\SearchServlet.class
 controller\DateServlet.class
 model\ListKereta.class
 dao\SearchingDAO.class
+dao\TicketDAO.class
 controller\BookingServlet.class
 model\Rute.class
+model\Penumpang.class
 com\trainticketbookiing\JakartaRestConfiguration.class
+controller\TicketServlet.class
+model\Ticket.class
 dao\RuteDAO.class
 dao\StasiunDAO.class
 com\trainticketbookiing\resources\JakartaEE10Resource.class
+dao\PenumpangDAO.class
 model\User.class

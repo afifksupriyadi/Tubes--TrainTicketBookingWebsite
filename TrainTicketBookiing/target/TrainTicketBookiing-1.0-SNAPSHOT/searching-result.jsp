@@ -64,7 +64,14 @@
                                 <div class="form-group">
                                     <img src="Asset/searching-stasiun-asal.png">
                                     <div class="separator"></div>
-                                    <input type="text" id="stasiunAsal" name="stasiunAsal" placeholder="Cari Stasiun Asal..." autocomplete="off" required>
+                                    <input 
+                                        type="text" 
+                                        id="stasiunAsal" 
+                                        name="stasiunAsal" 
+                                        placeholder="Cari Stasiun Asal..." 
+                                        autocomplete="off" 
+                                        value="${param.stasiunAsal}" 
+                                        required>
                                     <div class="autocomplete-list" id="stasiunAsal-list"></div>
                                 </div>
                             </div>
@@ -73,7 +80,14 @@
                                 <div class="form-group">
                                     <img src="Asset/searching-stasiun-tujuan.png" alt="Stasiun Tujuan">
                                     <div class="separator"></div>
-                                    <input type="text" id="stasiunTujuan" name="stasiunTujuan" placeholder="Cari Stasiun Tujuan..." autocomplete="off" required>
+                                    <input 
+                                        type="text" 
+                                        id="stasiunTujuan" 
+                                        name="stasiunTujuan" 
+                                        placeholder="Cari Stasiun Tujuan..." 
+                                        autocomplete="off" 
+                                        value="${param.stasiunTujuan}" 
+                                        required>
                                     <div class="autocomplete-list" id="stasiunTujuan-list"></div>
                                 </div>
                             </div>
@@ -86,7 +100,14 @@
                                 <div class="form-group">
                                     <img src="Asset/searching-date.png" alt="Tanggal Keberangkatan">
                                     <div class="separator"></div>
-                                    <input type="text" id="tanggal" name="tanggal" placeholder="Pilih Tanggal" autocomplete="off" required>
+                                    <input 
+                                        type="text" 
+                                        id="tanggal" 
+                                        name="tanggal" 
+                                        placeholder="Pilih Tanggal" 
+                                        autocomplete="off" 
+                                        value="${param.tanggal}" 
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group-container">
@@ -95,24 +116,23 @@
                                     <img src="Asset/searching-penumpang.png" alt="Jumlah Penumpang">
                                     <div class="separator"></div>
                                     <select name="jumlahPenumpang" id="jumlahPenumpang">
-                                        <option value="1">1 Penumpang</option>
-                                        <option value="2">2 Penumpang</option>
-                                        <option value="3">3 Penumpang</option>
-                                    </select>
+                                        <option value="1" <c:if test="${param.jumlahPenumpang == '1'}">selected</c:if>>1 Penumpang</option>
+                                        <option value="2" <c:if test="${param.jumlahPenumpang == '2'}">selected</c:if>>2 Penumpang</option>
+                                        <option value="3" <c:if test="${param.jumlahPenumpang == '3'}">selected</c:if>>3 Penumpang</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <button type="submit" class="btn-submit">Cari Kereta</button>
-                    </form>
+                            <button type="submit" class="btn-submit">Cari Kereta</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Date Navigation -->
-        <div class="date-navigation-container">
-            <!-- Previous Date Button -->
-            <form action="search" method="GET" style="display: inline;">
+            <!-- Date Navigation -->
+            <div class="date-navigation-container">
+                <!-- Previous Date Button -->
+                <form action="search" method="GET" style="display: inline;">
                 <input type="hidden" name="stasiunAsal" value="${param.stasiunAsal}">
                 <input type="hidden" name="stasiunTujuan" value="${param.stasiunTujuan}">
                 <input type="hidden" name="jumlahPenumpang" value="${param.jumlahPenumpang}">
@@ -124,8 +144,8 @@
 
                 <!-- Current Date Info -->
                 <div class="date-info">
-                    <span class="station-text">${param.stasiunAsal} ke ${param.stasiunTujuan}</span>
-                <span class="availability-text">Ada ${trainResults.size()} kereta tersedia</span>
+                <span class="station-text">${param.stasiunAsal} ke ${param.stasiunTujuan}</span>
+                <span class="availability-text">Ada ${trainResults.size()} kereta tersedia, untuk ${param.jumlahPenumpang} penumpang</span>
                 <span class="current-date">${param.tanggal}</span>
             </div>
 
@@ -208,29 +228,40 @@
                         const input = document.getElementById(inputId);
                         const list = document.getElementById(listId);
 
-                        input.addEventListener("input", () => {
-                            const value = input.value.toLowerCase();
-                            list.innerHTML = ""; // Clear the dropdown
-                            stations.forEach((station) => {
-                                if (station.toLowerCase().includes(value)) {
+                        // Function to populate the dropdown
+                        const populateDropdown = (filter = "") => {
+                            list.innerHTML = "";
+                            stations.forEach(station => {
+                                if (station.toLowerCase().includes(filter)) {
                                     const item = document.createElement("div");
                                     item.textContent = station;
                                     item.addEventListener("click", () => {
-                                        input.value = station; // Set input value to the selected item
-                                        list.innerHTML = ""; // Clear the dropdown
+                                        input.value = station;
+                                        list.innerHTML = "";
                                     });
                                     list.appendChild(item);
                                 }
                             });
+                        };
+
+                        // Show dropdown on input click
+                        input.addEventListener("focus", () => {
+                            populateDropdown();
                         });
 
-                        // Hide the dropdown when clicking outside
+                        // Filter dropdown items on input
+                        input.addEventListener("input", () => {
+                            const value = input.value.toLowerCase();
+                            populateDropdown(value);
+                        });
+
+                        // Hide dropdown when clicking outside
                         document.addEventListener("click", (e) => {
                             if (!input.contains(e.target) && !list.contains(e.target)) {
                                 list.innerHTML = "";
                             }
                         });
-                    }
+                    }
 
             setupAutocomplete("stasiunAsal", "stasiunAsal-list");
             setupAutocomplete("stasiunTujuan", "stasiunTujuan-list");

@@ -21,6 +21,10 @@ public class ListKereta {
     private int totalDistance; // Jarak total
     private int harga; // Harga total
 
+    private int idKereta; // ID unik kereta
+    private int idStasiunAsal; // ID stasiun asal
+    private int idStasiunTujuan; // ID stasiun tujuan
+
     public ListKereta(String namaKereta, int nomorKereta, String stasiunAsal, String stasiunTujuan, String departureTime, String arrivalTime, int availableCapacity, String tanggalKeberangkatan, int totalDistance, int harga) {
         this.namaKereta = namaKereta;
         this.nomorKereta = nomorKereta;
@@ -113,4 +117,29 @@ public class ListKereta {
     public void setHarga(int harga) {
         this.harga = harga;
     }
+
+    public void setIdKereta(int idKereta) {
+        this.idKereta = idKereta;
+    }
+
+    public int getIdKereta() {
+        return idKereta;
+    }
+
+    public void setIdStasiunAsal(int idStasiunAsal) {
+        this.idStasiunAsal = idStasiunAsal;
+    }
+
+    public int getIdStasiunAsal() {
+        return idStasiunAsal;
+    }
+
+    public void setIdStasiunTujuan(int idStasiunTujuan) {
+        this.idStasiunTujuan = idStasiunTujuan;
+    }
+
+    public int getIdStasiunTujuan() {
+        return idStasiunTujuan;
+    }
+
 }

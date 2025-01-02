@@ -39,7 +39,7 @@
 
                 <!-- Actions Section -->
                 <div class="header-actions">
-                    <a href="my-ticket.jsp">My Ticket</a>
+                    <a href="myticket">My Ticket</a>
                     <div class="profile-menu">
                         <img id="profile-icon" src="Asset/profile-navbar.png" alt="Profile Icon">
                         <div id="profile-dropdown" class="dropdown-menu hidden">
@@ -114,11 +114,11 @@
                         const input = document.getElementById(inputId);
                         const list = document.getElementById(listId);
 
-                        input.addEventListener("input", () => {
-                            const value = input.value.toLowerCase();
+                        // Function to populate the dropdown
+                        const populateDropdown = (filter = "") => {
                             list.innerHTML = "";
                             stations.forEach(station => {
-                                if (station.toLowerCase().includes(value)) {
+                                if (station.toLowerCase().includes(filter)) {
                                     const item = document.createElement("div");
                                     item.textContent = station;
                                     item.addEventListener("click", () => {
@@ -128,14 +128,26 @@
                                     list.appendChild(item);
                                 }
                             });
+                        };
+
+                        // Show dropdown on input click
+                        input.addEventListener("focus", () => {
+                            populateDropdown();
                         });
 
+                        // Filter dropdown items on input
+                        input.addEventListener("input", () => {
+                            const value = input.value.toLowerCase();
+                            populateDropdown(value);
+                        });
+
+                        // Hide dropdown when clicking outside
                         document.addEventListener("click", (e) => {
                             if (!input.contains(e.target) && !list.contains(e.target)) {
                                 list.innerHTML = "";
                             }
                         });
-                    }
+                    }
 
             setupAutocomplete("stasiunAsal", "stasiunAsal-list");
             setupAutocomplete("stasiunTujuan", "stasiunTujuan-list");

@@ -9,6 +9,7 @@ package model;
  * @author LENOVO
  */
 public class User {
+    private int idUser;
     private String nama;
     private String email;
     private String gender;
@@ -16,6 +17,17 @@ public class User {
     private String username;
     private String password;
 
+    public User(int idUser, String nama, String email, String gender, String tanggalLahir, String username, String password) {
+        this.idUser = idUser;
+        this.nama = nama;
+        this.email = email;
+        this.gender = gender;
+        this.tanggalLahir = tanggalLahir;
+        this.username = username;
+        this.password = password;
+    }
+    
+    // Konstruktor tanpa idUser
     public User(String nama, String email, String gender, String tanggalLahir, String username, String password) {
         this.nama = nama;
         this.email = email;
@@ -27,6 +39,14 @@ public class User {
 
     public User() {
     }    
+    
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
     public String getNama() {
         return nama;

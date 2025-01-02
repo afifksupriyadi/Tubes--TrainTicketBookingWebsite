@@ -39,6 +39,7 @@ public class LoginDAO {
             if (rs.next()) {
                 // Create a User object from the result set
                 retrievedUser = new User(
+                        rs.getInt("idUser"),
                         rs.getString("nama"),
                         rs.getString("email"),
                         rs.getString("gender"),
