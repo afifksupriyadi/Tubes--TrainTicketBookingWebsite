@@ -18,6 +18,10 @@ public class Ticket {
     private int idKereta; // ID kereta
     private int idStasiunAsal; // ID stasiun asal
     private int idStasiunTujuan; // ID stasiun tujuan
+    private String namaPenumpang; 
+    private String namaKereta;
+    private String namaStasiunAsal;
+    private String namaStasiunTujuan;
     private String departureTime;
     private String arrivalTime;
     private String tanggalKeberangkatan;
@@ -39,14 +43,15 @@ public class Ticket {
         this.harga = harga;
         this.waktuBooking = waktuBooking;
     }
-
-    public Ticket(int idBooked, int idUser, int idPenumpang, int idKereta, int idStasiunAsal, int idStasiunTujuan, String departureTime, String arrivalTime, String tanggalKeberangkatan, int harga, LocalDateTime waktuBooking) {
+    
+    //Dipakai untuk My Ticket
+    public Ticket(int idBooked, int idUser, String namaPenumpang, String namaKereta, String namaStasiunAsal, String namaStasiunTujuan, String departureTime, String arrivalTime, String tanggalKeberangkatan, int harga, LocalDateTime waktuBooking) {
         this.idBooked = idBooked;
         this.idUser = idUser;
-        this.idPenumpang = idPenumpang;
-        this.idKereta = idKereta;
-        this.idStasiunAsal = idStasiunAsal;
-        this.idStasiunTujuan = idStasiunTujuan;
+        this.namaPenumpang = namaPenumpang;
+        this.namaKereta = namaKereta;
+        this.namaStasiunAsal = namaStasiunAsal;
+        this.namaStasiunTujuan = namaStasiunTujuan;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.tanggalKeberangkatan = tanggalKeberangkatan;
@@ -54,9 +59,6 @@ public class Ticket {
         this.waktuBooking = waktuBooking;
     }
     
-    
-    
-
     public int getIdBooked() {
         return idBooked;
     }
@@ -144,6 +146,37 @@ public class Ticket {
     public void setWaktuBooking(LocalDateTime waktuBooking) {
         this.waktuBooking = waktuBooking;
     }
+    
+     public String getNamaPenumpang() {
+        return namaPenumpang;
+    }
 
+    public void setNamaPenumpang(String namaPenumpang) {
+        this.namaPenumpang = namaPenumpang;
+    }
+
+    public String getNamaKereta() {
+        return namaKereta;
+    }
+
+    public void setNamaKereta(String namaKereta) {
+        this.namaKereta = namaKereta;
+    }
+
+    public String getNamaStasiunAsal() {
+        return namaStasiunAsal;
+    }
+
+    public void setNamaStasiunAsal(String namaStasiunAsal) {
+        this.namaStasiunAsal = namaStasiunAsal;
+    }
+
+    public String getNamaStasiunTujuan() {
+        return namaStasiunTujuan;
+    }
+
+    public void setNamaStasiunTujuan(String namaStasiunTujuan) {
+        this.namaStasiunTujuan = namaStasiunTujuan;
+    }
 
 }

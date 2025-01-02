@@ -80,8 +80,8 @@
                             <td>${status.index + 1}</td>
                             <td>${ticket.namaPenumpang}</td>
                             <td>${ticket.namaKereta}</td>
-                            <td>${ticket.stasiunAsal}</td>
-                            <td>${ticket.stasiunTujuan}</td>
+                            <td>${ticket.namaStasiunAsal}</td>
+                            <td>${ticket.namaStasiunTujuan}</td>
                             <td>${ticket.departureTime}</td>
                             <td>${ticket.arrivalTime}</td>
                             <td>${ticket.waktuBooking}</td>
@@ -95,7 +95,7 @@
             <p style="text-align:center;">You have no tickets booked yet.</p>
         </c:if>
         <div class="footer">
-            <a href="homepage.jsp">Back to Homepage</a>
+            <a href="homepage">Back to Homepage</a>
         </div>
     </div>
 </body>
