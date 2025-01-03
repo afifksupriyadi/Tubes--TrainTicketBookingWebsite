@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
+
 import java.sql.*;
 import model.User;
+
 /**
  *
  * @author LENOVO
@@ -19,7 +21,7 @@ public class RegisterDAO {
 
         try {
             // Step 1: Load JDBC driver
-        	Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
             // Step 2: Establish database connection
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

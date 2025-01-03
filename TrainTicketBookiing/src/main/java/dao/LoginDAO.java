@@ -16,7 +16,7 @@ public class LoginDAO {
     private final String DB_URL = "jdbc:mysql://localhost:3306/keretakuy";
     private final String DB_USER = "root";
     private final String DB_PASSWORD = "";
-
+    
     public User getUserIfValid(User user) {
         User retrievedUser = null;
         try {
@@ -48,6 +48,8 @@ public class LoginDAO {
                         rs.getString("passwrd")
                 );
             }
+            System.out.println("Running query: " + query);
+
 
             // Close resources
             connection.close();
