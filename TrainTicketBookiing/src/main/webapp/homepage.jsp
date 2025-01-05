@@ -18,7 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Homepage</title>
-        <link rel="stylesheet" href="CSS/css-homepage.css">
+        <link rel="stylesheet" href="CSS/css-home.css">
         <!-- Flatpickr CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <!-- Flatpickr JS -->
@@ -39,11 +39,13 @@
 
                 <!-- Actions Section -->
                 <div class="header-actions">
+                    <a href="showPenumpang?id=${user.idUser}">List Penumpang</a>
                     <a href="myticket">My Ticket</a>
                     <div class="profile-menu">
                         <img id="profile-icon" src="Asset/profile-navbar.png" alt="Profile Icon">
                         <div id="profile-dropdown" class="dropdown-menu hidden">
-                            <a href="profile.jsp">Profile</a>
+                            <a>Hello ${user.nama}</a>
+                            <a href="user?id=${user.idUser}">Profile</a>
                             <a href="logout">Logout</a>
                         </div>
                     </div>

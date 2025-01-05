@@ -1,4 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: RegisterDAOTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.263 s -- in RegisterDAOTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.366 s <<< FAILURE! -- in RegisterDAOTest
+RegisterDAOTest.testRegisterUser -- Time elapsed: 0.364 s <<< ERROR!
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'johndoe' for key 'username'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685)
+	at RegisterDAOTest.setUp(RegisterDAOTest.java:34)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

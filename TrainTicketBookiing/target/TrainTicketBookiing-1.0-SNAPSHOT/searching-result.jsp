@@ -39,11 +39,13 @@
 
                 <!-- Actions Section -->
                 <div class="header-actions">
-                    <a href="my-ticket.jsp">My Ticket</a>
+                    <a href="showPenumpang?id=${user.idUser}">List Penumpang</a>
+                    <a href="myticket">My Ticket</a>
                     <div class="profile-menu">
                         <img id="profile-icon" src="Asset/profile-navbar.png" alt="Profile Icon">
                         <div id="profile-dropdown" class="dropdown-menu hidden">
-                            <a href="profile.jsp">Profile</a>
+                            <a>Hello ${user.nama}</a>
+                            <a href="user?id=${user.idUser}">Profile</a>
                             <a href="logout">Logout</a>
                         </div>
                     </div>

@@ -66,14 +66,21 @@ public class SearchServlet extends HttpServlet {
         }
 
         // Pass data to the JSP
+        
+        // Data for searching form
         request.setAttribute("stations", stationList);
         request.setAttribute("dates", dateList);
-        request.setAttribute("trainResults", trainResults);
+        request.setAttribute("jumlahPenumpang", jumlahPenumpang);
+       
+        // Data for date navigation
         request.setAttribute("previousDate", previousDate);
         request.setAttribute("nextDate", nextDate);
         request.setAttribute("currentSearchDate", tanggal);
-        request.setAttribute("jumlahPenumpang", jumlahPenumpang);
+        
+        // Data searching result
+        request.setAttribute("trainResults", trainResults);
 
+       
         // Forward to search results JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("searching-result.jsp");
         dispatcher.forward(request, response);

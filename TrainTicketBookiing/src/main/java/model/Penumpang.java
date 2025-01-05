@@ -28,6 +28,13 @@ public class Penumpang {
         this.emailPenumpang = emailPenumpang;
         this.idUser = idUser;
     }
+    
+      // Constructor buat list penumpang
+    public Penumpang(int idPenumpang, String namaPenumpang, String emailPenumpang) {
+        this.idPenumpang = idPenumpang;
+        this.namaPenumpang = namaPenumpang;
+        this.emailPenumpang = emailPenumpang;
+    }
 
     // Getters and Setters
     public int getIdPenumpang() {

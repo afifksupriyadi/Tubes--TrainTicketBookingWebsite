@@ -82,20 +82,43 @@ public class RuteDAO {
             }
         }
     }
-    
+
     public int getIdStasiunByName(String namaStasiun) throws SQLException {
-    String query = "SELECT idStasiun FROM Stasiun WHERE nama = ?";
-    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-         PreparedStatement statement = connection.prepareStatement(query)) {
-        statement.setString(1, namaStasiun);
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return resultSet.getInt("idStasiun");
+        String query = "SELECT idStasiun FROM Stasiun WHERE nama = ?";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, namaStasiun);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("idStasiun");
+                }
+            }
+        }
+        throw new SQLException("ID Stasiun tidak ditemukan untuk nama: " + namaStasiun);
+    }
+
+    public void updateCapacityAdd(int idKereta, int idStasiunAsal, int idStasiunTujuan, String tanggal, int jumlahPenumpang) throws SQLException {
+        String query = "UPDATE Rute r "
+                + "SET r.capacity = r.capacity + ? "
+                + "WHERE r.idKereta = ? "
+                + "  AND r.date = ? "
+                + "  AND r.idRute BETWEEN "
+                + "      (SELECT MIN(idRute) FROM Rute WHERE idKereta = r.idKereta AND idStasiunAsal = ? AND date = ?) "
+                + "      AND "
+                + "      (SELECT MAX(idRute) FROM Rute WHERE idKereta = r.idKereta AND idStasiunTujuan = ? AND date = ?)";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, jumlahPenumpang); // Selalu 1
+            statement.setInt(2, idKereta);
+            statement.setString(3, tanggal);
+            statement.setInt(4, idStasiunAsal);
+            statement.setString(5, tanggal);
+            statement.setInt(6, idStasiunTujuan);
+            statement.setString(7, tanggal);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("Kapasitas kursi tidak dapat diperbarui.");
             }
         }
     }
-    throw new SQLException("ID Stasiun tidak ditemukan untuk nama: " + namaStasiun);
-}
-
 
 }
