@@ -20,7 +20,6 @@ public class ListKereta {
     private String tanggalKeberangkatan;
     private int totalDistance; // Jarak total
     private int harga; // Harga total
-
     private int idKereta; // ID unik kereta
     private int idStasiunAsal; // ID stasiun asal
     private int idStasiunTujuan; // ID stasiun tujuan

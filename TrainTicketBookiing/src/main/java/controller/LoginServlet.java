@@ -64,13 +64,16 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         // Create a User object
-        User user = new User(nama, email, gender, tanggalLahir, username, password);
-        boolean result = registerDAO.registerUser(user);
+        boolean checkUser = registerDAO.checkUserIfExist(username);
 
-        if (result) {
-            response.sendRedirect("registration-success.jsp");
+        if (!checkUser) {
+            User user = new User(nama, email, gender, tanggalLahir, username, password);
+            boolean result = registerDAO.registerUser(user);
+            if (result) {
+                response.sendRedirect("registration-success.jsp");
+            }
         } else {
-            response.sendRedirect("registration-error.jsp");
+            response.sendRedirect("registration-failed.jsp?error=Username+already+exists");
         }
     }
 

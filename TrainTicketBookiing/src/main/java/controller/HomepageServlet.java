@@ -34,15 +34,15 @@ public class HomepageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Fetch station names and dates
+        // Mengambil data stasiun dan data tanggal dari database
         List<Stasiun> stationList = stasiunDAO.getListStations();
         List<String> dateList = ruteDAO.getListDatesOnDatabase();
 
-        // Pass data to the JSP
+        // Mengirim data stasiun dan data tanggal ke JSP
         request.setAttribute("stations", stationList);
         request.setAttribute("dates", dateList);
 
-        // Forward to JSP
+        // Proses Mengirim data ke JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("homepage.jsp");
         dispatcher.forward(request, response);
     }

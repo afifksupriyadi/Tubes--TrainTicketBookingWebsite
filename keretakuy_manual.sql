@@ -391,6 +391,9 @@ drop table user;
 
 
 -- QUERY COBA-COBA
+-- Query Menampilkan List Tanggal
+SELECT DISTINCT date FROM Rute ORDER BY date ASC;
+
 -- Query Searching
 SELECT 
     k.nama AS namaKereta,

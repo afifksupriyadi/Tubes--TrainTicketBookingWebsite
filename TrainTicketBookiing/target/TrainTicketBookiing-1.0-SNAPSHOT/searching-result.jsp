@@ -2,11 +2,13 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@page import="model.User" %>
 <%
+    // Membuat kondisi jika user logout, user tidak akan dapat mengakses halaman ini.
+    // User harus login lagi di halaman login
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
 
-    // Check if the user session exists
+    // Mengecek sesi user
     User user = (User) session.getAttribute("user");
     if (user == null) {
         response.sendRedirect("login.jsp");
@@ -25,6 +27,7 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     </head>
     <body>
+        <!-- Header -->
         <header>
             <div class="header-container">
                 <!-- Logo Section -->
@@ -54,6 +57,7 @@
             <!-- Horizontal Line -->
             <div class="header-line"></div>
         </header>
+        <!-- Searching Form -->
         <div class="outer-container">
             <div class="main-container">
                 <div class="ticket-container">
@@ -135,7 +139,7 @@
             <div class="date-navigation-container">
                 <!-- Previous Date Button -->
                 <form action="search" method="GET" style="display: inline;">
-                <input type="hidden" name="stasiunAsal" value="${param.stasiunAsal}">
+                    <input type="hidden" name="stasiunAsal" value="${param.stasiunAsal}">
                 <input type="hidden" name="stasiunTujuan" value="${param.stasiunTujuan}">
                 <input type="hidden" name="jumlahPenumpang" value="${param.jumlahPenumpang}">
                 <input type="hidden" name="tanggal" value="${previousDate}">
@@ -146,7 +150,7 @@
 
                 <!-- Current Date Info -->
                 <div class="date-info">
-                <span class="station-text">${param.stasiunAsal} ke ${param.stasiunTujuan}</span>
+                    <span class="station-text">${param.stasiunAsal} ke ${param.stasiunTujuan}</span>
                 <span class="availability-text">Ada ${trainResults.size()} kereta tersedia, untuk ${param.jumlahPenumpang} penumpang</span>
                 <span class="current-date">${param.tanggal}</span>
             </div>
@@ -163,7 +167,7 @@
                 </form>
             </div>
 
-            <!-- Train Results -->
+            <!-- Searching Result -->
             <div class="results-container">
             <c:forEach var="train" items="${trainResults}">
                 <div class="train-card">
@@ -205,8 +209,6 @@
                             <input type="hidden" name="jumlahPenumpang" value="${param.jumlahPenumpang}">
                             <button class="btn-reservasi" type="submit">Reservasi</button>
                         </form>
-
-
                         <!-- Kursi Tersedia -->
                         <div class="train-capacity">
                             <span>${train.availableCapacity} kursi tersedia</span>
@@ -263,7 +265,7 @@
                                 list.innerHTML = "";
                             }
                         });
-                    }
+                                   }
 
             setupAutocomplete("stasiunAsal", "stasiunAsal-list");
             setupAutocomplete("stasiunTujuan", "stasiunTujuan-list");

@@ -36,23 +36,25 @@ public class SearchServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Fetch station names and dates
+        // VIEW(1): MENAMPILKAN KEMBALI SEARCHING FORM
+        // Mengambil data stasiun dan data tanggal dari database
         List<Stasiun> stationList = stasiunDAO.getListStations();
         List<String> dateList = ruteDAO.getListDatesOnDatabase();
-
-        // Retrieve parameters from the request
+        
+        
+        
+        // VIEW(2): MENAMPILKAN HASIL PENCARIAN TIKET
+        // Menerima parameter inputan dari searching form
         String stasiunAsal = request.getParameter("stasiunAsal");
         String stasiunTujuan = request.getParameter("stasiunTujuan");
         String tanggal = request.getParameter("tanggal");
         int jumlahPenumpang = Integer.parseInt(request.getParameter("jumlahPenumpang"));
 
-        // Fetch search results using DAO
+        // Menjalankan query untuk searching
         List<ListKereta> trainResults = searchingDAO.searchKereta(stasiunAsal, stasiunTujuan, tanggal, jumlahPenumpang);
-
-        // Calculate previous and next dates
+        // Membuat dan menampilkan date navigation
         String previousDate = null;
         String nextDate = null;
-
         for (int i = 0; i < dateList.size(); i++) {
             if (dateList.get(i).equals(tanggal)) {
                 if (i > 0) {
@@ -65,23 +67,23 @@ public class SearchServlet extends HttpServlet {
             }
         }
 
-        // Pass data to the JSP
-        
-        // Data for searching form
+        // Mengirim data ke JSP
+        // DATA(1): Data untuk menampilkan kembali searching form
         request.setAttribute("stations", stationList);
         request.setAttribute("dates", dateList);
-        request.setAttribute("jumlahPenumpang", jumlahPenumpang);
+        
        
-        // Data for date navigation
+        // DATA(2): Data untuk menampilkan date navigation
         request.setAttribute("previousDate", previousDate);
         request.setAttribute("nextDate", nextDate);
         request.setAttribute("currentSearchDate", tanggal);
         
-        // Data searching result
+        // DATA(3): Data untuk menampilkan hasil pencarian
+        request.setAttribute("jumlahPenumpang", jumlahPenumpang);
         request.setAttribute("trainResults", trainResults);
+        
 
-       
-        // Forward to search results JSP
+        // Proses mengirim semua data ke JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("searching-result.jsp");
         dispatcher.forward(request, response);
     }

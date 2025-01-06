@@ -65,6 +65,13 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("passwrd");
 
+        boolean usernameExists = userDAO.checkUserIfExist(username);
+
+        if (usernameExists) {
+            // Jika username sudah digunakan oleh user lain
+            response.sendRedirect("user?id=" + idUser + "&error=Username+sudah+ada+yang+dipakai");
+            return;
+        }
         User user = new User(idUser, nama, email, gender, tanggalLahir, username, password);
         boolean updated = userDAO.updateUser(user);
 

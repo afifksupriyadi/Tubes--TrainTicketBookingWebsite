@@ -22,7 +22,6 @@
             
             <!-- Actions Section -->
             <div class="header-actions">
-                <a href="my-ticket.jsp">My Ticket</a>
                 <img src="Asset/profile-navbar.png" alt="Profile Icon">
             </div>
         </div>
@@ -71,6 +70,7 @@
                 <div class="form-submit">
                     <input type="submit" value="Kirim">
                 </div>
+                <p>Sudah ada akun? <a href="login.jsp">Login</a></p>
             </form>
         </div>
     </main>

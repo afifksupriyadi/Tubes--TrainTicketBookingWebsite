@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jan 2025 pada 10.47
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Jan 06, 2025 at 08:31 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,20 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `keretakuy`
 --
+CREATE DATABASE IF NOT EXISTS `keretakuy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `keretakuy`;
 
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `adminbookedtickets`
--- (Lihat di bawah untuk tampilan aktual)
---
-CREATE TABLE `adminbookedtickets` (
-);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kereta`
+-- Table structure for table `kereta`
 --
 
 CREATE TABLE `kereta` (
@@ -44,7 +37,7 @@ CREATE TABLE `kereta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `kereta`
+-- Dumping data for table `kereta`
 --
 
 INSERT INTO `kereta` (`idKereta`, `nama`, `kapasitas`, `hargaKereta`) VALUES
@@ -56,7 +49,7 @@ INSERT INTO `kereta` (`idKereta`, `nama`, `kapasitas`, `hargaKereta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penumpang`
+-- Table structure for table `penumpang`
 --
 
 CREATE TABLE `penumpang` (
@@ -66,19 +59,10 @@ CREATE TABLE `penumpang` (
   `idUser` int(3) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `penumpang`
---
-
-INSERT INTO `penumpang` (`idPenumpang`, `namaPenumpang`, `emailPenumpang`, `idUser`) VALUES
-(1, 'Afif Kurniawan Supriyadi', 'afifksupriyadi@gmail.com', 001),
-(2, 'Aydin Shidqi Athalla Karyanto', 'aydin@gmail.com', 001),
-(3, 'Reza Ilham Maulana', 'rezailham@gmail.com', 001);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rute`
+-- Table structure for table `rute`
 --
 
 CREATE TABLE `rute` (
@@ -94,7 +78,7 @@ CREATE TABLE `rute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `rute`
+-- Dumping data for table `rute`
 --
 
 INSERT INTO `rute` (`idRute`, `idKereta`, `idStasiunAsal`, `idStasiunTujuan`, `departureTime`, `arrivalTime`, `distance`, `capacity`, `date`) VALUES
@@ -116,8 +100,8 @@ INSERT INTO `rute` (`idRute`, `idKereta`, `idStasiunAsal`, `idStasiunTujuan`, `d
 (16, 01, 007, 008, '15:00:00', '16:30:00', 100, 10, '2025-01-07'),
 (17, 01, 008, 009, '16:45:00', '17:45:00', 110, 10, '2025-01-07'),
 (18, 01, 009, 010, '18:00:00', '19:30:00', 90, 10, '2025-01-07'),
-(19, 01, 001, 002, '06:00:00', '07:30:00', 70, 7, '2025-01-08'),
-(20, 01, 002, 003, '07:45:00', '08:15:00', 40, 7, '2025-01-08'),
+(19, 01, 001, 002, '06:00:00', '07:30:00', 70, 10, '2025-01-08'),
+(20, 01, 002, 003, '07:45:00', '08:15:00', 40, 10, '2025-01-08'),
 (21, 01, 003, 004, '08:30:00', '09:00:00', 40, 10, '2025-01-08'),
 (22, 01, 004, 005, '09:15:00', '10:45:00', 50, 10, '2025-01-08'),
 (23, 01, 005, 006, '11:00:00', '13:00:00', 120, 10, '2025-01-08'),
@@ -238,86 +222,71 @@ INSERT INTO `rute` (`idRute`, `idKereta`, `idStasiunAsal`, `idStasiunTujuan`, `d
 (138, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-10'),
 (139, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-10'),
 (140, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-10'),
-(141, 04, 020, 021, '05:00:00', '05:10:00', 10, 10, '2025-01-06'),
-(142, 04, 021, 022, '05:20:00', '05:50:00', 30, 10, '2025-01-06'),
-(143, 04, 022, 023, '06:00:00', '06:40:00', 40, 10, '2025-01-06'),
-(144, 04, 023, 024, '06:50:00', '07:20:00', 30, 10, '2025-01-06'),
-(145, 04, 024, 025, '07:30:00', '08:10:00', 40, 10, '2025-01-06'),
-(146, 04, 025, 026, '08:20:00', '08:50:00', 30, 10, '2025-01-06'),
-(147, 04, 026, 008, '09:00:00', '09:30:00', 40, 10, '2025-01-06'),
-(148, 04, 008, 017, '09:40:00', '11:00:00', 100, 10, '2025-01-06'),
-(149, 04, 017, 006, '11:15:00', '12:30:00', 110, 10, '2025-01-06'),
-(150, 04, 006, 016, '12:40:00', '13:30:00', 70, 10, '2025-01-06'),
-(151, 04, 016, 005, '13:45:00', '15:15:00', 100, 10, '2025-01-06'),
-(152, 04, 005, 027, '15:30:00', '17:00:00', 150, 10, '2025-01-06'),
-(153, 04, 027, 028, '17:20:00', '18:50:00', 140, 10, '2025-01-06'),
-(154, 04, 028, 029, '19:00:00', '19:30:00', 30, 10, '2025-01-06'),
-(155, 04, 029, 030, '19:40:00', '20:00:00', 20, 10, '2025-01-06'),
-(156, 04, 020, 021, '05:00:00', '05:10:00', 10, 10, '2025-01-07'),
-(157, 04, 021, 022, '05:20:00', '05:50:00', 30, 10, '2025-01-07'),
-(158, 04, 022, 023, '06:00:00', '06:40:00', 40, 10, '2025-01-07'),
-(159, 04, 023, 024, '06:50:00', '07:20:00', 30, 10, '2025-01-07'),
-(160, 04, 024, 025, '07:30:00', '08:10:00', 40, 10, '2025-01-07'),
-(161, 04, 025, 026, '08:20:00', '08:50:00', 30, 10, '2025-01-07'),
-(162, 04, 026, 008, '09:00:00', '09:30:00', 40, 10, '2025-01-07'),
-(163, 04, 008, 017, '09:40:00', '11:00:00', 100, 10, '2025-01-07'),
-(164, 04, 017, 006, '11:15:00', '12:30:00', 110, 10, '2025-01-07'),
-(165, 04, 006, 016, '12:40:00', '13:30:00', 70, 10, '2025-01-07'),
-(166, 04, 016, 005, '13:45:00', '15:15:00', 100, 10, '2025-01-07'),
-(167, 04, 005, 027, '15:30:00', '17:00:00', 150, 10, '2025-01-07'),
-(168, 04, 027, 028, '17:20:00', '18:50:00', 140, 10, '2025-01-07'),
-(169, 04, 028, 029, '19:00:00', '19:30:00', 30, 10, '2025-01-07'),
-(170, 04, 029, 030, '19:40:00', '20:00:00', 20, 10, '2025-01-07'),
-(171, 04, 020, 021, '05:00:00', '05:10:00', 10, 10, '2025-01-08'),
-(172, 04, 021, 022, '05:20:00', '05:50:00', 30, 10, '2025-01-08'),
-(173, 04, 022, 023, '06:00:00', '06:40:00', 40, 10, '2025-01-08'),
-(174, 04, 023, 024, '06:50:00', '07:20:00', 30, 10, '2025-01-08'),
-(175, 04, 024, 025, '07:30:00', '08:10:00', 40, 10, '2025-01-08'),
-(176, 04, 025, 026, '08:20:00', '08:50:00', 30, 10, '2025-01-08'),
-(177, 04, 026, 008, '09:00:00', '09:30:00', 40, 10, '2025-01-08'),
-(178, 04, 008, 017, '09:40:00', '11:00:00', 100, 10, '2025-01-08'),
-(179, 04, 017, 006, '11:15:00', '12:30:00', 110, 10, '2025-01-08'),
-(180, 04, 006, 016, '12:40:00', '13:30:00', 70, 10, '2025-01-08'),
-(181, 04, 016, 005, '13:45:00', '15:15:00', 100, 10, '2025-01-08'),
-(182, 04, 005, 027, '15:30:00', '17:00:00', 150, 10, '2025-01-08'),
-(183, 04, 027, 028, '17:20:00', '18:50:00', 140, 10, '2025-01-08'),
-(184, 04, 028, 029, '19:00:00', '19:30:00', 30, 10, '2025-01-08'),
-(185, 04, 029, 030, '19:40:00', '20:00:00', 20, 10, '2025-01-08'),
-(186, 04, 020, 021, '05:00:00', '05:10:00', 10, 10, '2025-01-09'),
-(187, 04, 021, 022, '05:20:00', '05:50:00', 30, 10, '2025-01-09'),
-(188, 04, 022, 023, '06:00:00', '06:40:00', 40, 10, '2025-01-09'),
-(189, 04, 023, 024, '06:50:00', '07:20:00', 30, 10, '2025-01-09'),
-(190, 04, 024, 025, '07:30:00', '08:10:00', 40, 10, '2025-01-09'),
-(191, 04, 025, 026, '08:20:00', '08:50:00', 30, 10, '2025-01-09'),
-(192, 04, 026, 008, '09:00:00', '09:30:00', 40, 10, '2025-01-09'),
-(193, 04, 008, 017, '09:40:00', '11:00:00', 100, 10, '2025-01-09'),
-(194, 04, 017, 006, '11:15:00', '12:30:00', 110, 10, '2025-01-09'),
-(195, 04, 006, 016, '12:40:00', '13:30:00', 70, 10, '2025-01-09'),
-(196, 04, 016, 005, '13:45:00', '15:15:00', 100, 10, '2025-01-09'),
-(197, 04, 005, 027, '15:30:00', '17:00:00', 150, 10, '2025-01-09'),
-(198, 04, 027, 028, '17:20:00', '18:50:00', 140, 10, '2025-01-09'),
-(199, 04, 028, 029, '19:00:00', '19:30:00', 30, 10, '2025-01-09'),
-(200, 04, 029, 030, '19:40:00', '20:00:00', 20, 10, '2025-01-09'),
-(201, 04, 020, 021, '05:00:00', '05:10:00', 10, 10, '2025-01-10'),
-(202, 04, 021, 022, '05:20:00', '05:50:00', 30, 10, '2025-01-10'),
-(203, 04, 022, 023, '06:00:00', '06:40:00', 40, 10, '2025-01-10'),
-(204, 04, 023, 024, '06:50:00', '07:20:00', 30, 10, '2025-01-10'),
-(205, 04, 024, 025, '07:30:00', '08:10:00', 40, 10, '2025-01-10'),
-(206, 04, 025, 026, '08:20:00', '08:50:00', 30, 10, '2025-01-10'),
-(207, 04, 026, 008, '09:00:00', '09:30:00', 40, 10, '2025-01-10'),
-(208, 04, 008, 017, '09:40:00', '11:00:00', 100, 10, '2025-01-10'),
-(209, 04, 017, 006, '11:15:00', '12:30:00', 110, 10, '2025-01-10'),
-(210, 04, 006, 016, '12:40:00', '13:30:00', 70, 10, '2025-01-10'),
-(211, 04, 016, 005, '13:45:00', '15:15:00', 100, 10, '2025-01-10'),
-(212, 04, 005, 027, '15:30:00', '17:00:00', 150, 10, '2025-01-10'),
-(213, 04, 027, 028, '17:20:00', '18:50:00', 140, 10, '2025-01-10'),
-(214, 04, 028, 029, '19:00:00', '19:30:00', 30, 10, '2025-01-10'),
-(215, 04, 029, 030, '19:40:00', '20:00:00', 20, 10, '2025-01-10');
+(141, 03, 001, 015, '05:00:00', '06:30:00', 110, 10, '2025-01-06'),
+(142, 03, 015, 002, '06:45:00', '08:15:00', 120, 10, '2025-01-06'),
+(143, 03, 002, 003, '08:30:00', '09:00:00', 40, 10, '2025-01-06'),
+(144, 03, 003, 004, '09:15:00', '09:45:00', 40, 10, '2025-01-06'),
+(145, 03, 004, 005, '10:00:00', '11:30:00', 80, 10, '2025-01-06'),
+(146, 03, 005, 016, '11:45:00', '13:15:00', 100, 10, '2025-01-06'),
+(147, 03, 016, 006, '13:30:00', '15:00:00', 110, 10, '2025-01-06'),
+(148, 03, 006, 017, '15:15:00', '16:45:00', 70, 10, '2025-01-06'),
+(149, 03, 017, 008, '17:00:00', '18:30:00', 100, 10, '2025-01-06'),
+(150, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-06'),
+(151, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-06'),
+(152, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-06'),
+(153, 03, 001, 015, '05:00:00', '06:30:00', 110, 10, '2025-01-07'),
+(154, 03, 015, 002, '06:45:00', '08:15:00', 120, 10, '2025-01-07'),
+(155, 03, 002, 003, '08:30:00', '09:00:00', 40, 10, '2025-01-07'),
+(156, 03, 003, 004, '09:15:00', '09:45:00', 40, 10, '2025-01-07'),
+(157, 03, 004, 005, '10:00:00', '11:30:00', 80, 10, '2025-01-07'),
+(158, 03, 005, 016, '11:45:00', '13:15:00', 100, 10, '2025-01-07'),
+(159, 03, 016, 006, '13:30:00', '15:00:00', 110, 10, '2025-01-07'),
+(160, 03, 006, 017, '15:15:00', '16:45:00', 70, 10, '2025-01-07'),
+(161, 03, 017, 008, '17:00:00', '18:30:00', 100, 10, '2025-01-07'),
+(162, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-07'),
+(163, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-07'),
+(164, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-07'),
+(165, 03, 001, 015, '05:00:00', '06:30:00', 110, 10, '2025-01-08'),
+(166, 03, 015, 002, '06:45:00', '08:15:00', 120, 10, '2025-01-08'),
+(167, 03, 002, 003, '08:30:00', '09:00:00', 40, 10, '2025-01-08'),
+(168, 03, 003, 004, '09:15:00', '09:45:00', 40, 10, '2025-01-08'),
+(169, 03, 004, 005, '10:00:00', '11:30:00', 80, 10, '2025-01-08'),
+(170, 03, 005, 016, '11:45:00', '13:15:00', 100, 10, '2025-01-08'),
+(171, 03, 016, 006, '13:30:00', '15:00:00', 110, 10, '2025-01-08'),
+(172, 03, 006, 017, '15:15:00', '16:45:00', 70, 10, '2025-01-08'),
+(173, 03, 017, 008, '17:00:00', '18:30:00', 100, 10, '2025-01-08'),
+(174, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-08'),
+(175, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-08'),
+(176, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-08'),
+(177, 03, 001, 015, '05:00:00', '06:30:00', 110, 10, '2025-01-09'),
+(178, 03, 015, 002, '06:45:00', '08:15:00', 120, 10, '2025-01-09'),
+(179, 03, 002, 003, '08:30:00', '09:00:00', 40, 10, '2025-01-09'),
+(180, 03, 003, 004, '09:15:00', '09:45:00', 40, 10, '2025-01-09'),
+(181, 03, 004, 005, '10:00:00', '11:30:00', 80, 10, '2025-01-09'),
+(182, 03, 005, 016, '11:45:00', '13:15:00', 100, 10, '2025-01-09'),
+(183, 03, 016, 006, '13:30:00', '15:00:00', 110, 10, '2025-01-09'),
+(184, 03, 006, 017, '15:15:00', '16:45:00', 70, 10, '2025-01-09'),
+(185, 03, 017, 008, '17:00:00', '18:30:00', 100, 10, '2025-01-09'),
+(186, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-09'),
+(187, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-09'),
+(188, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-09'),
+(189, 03, 001, 015, '05:00:00', '06:30:00', 110, 10, '2025-01-10'),
+(190, 03, 015, 002, '06:45:00', '08:15:00', 120, 10, '2025-01-10'),
+(191, 03, 002, 003, '08:30:00', '09:00:00', 40, 10, '2025-01-10'),
+(192, 03, 003, 004, '09:15:00', '09:45:00', 40, 10, '2025-01-10'),
+(193, 03, 004, 005, '10:00:00', '11:30:00', 80, 10, '2025-01-10'),
+(194, 03, 005, 016, '11:45:00', '13:15:00', 100, 10, '2025-01-10'),
+(195, 03, 016, 006, '13:30:00', '15:00:00', 110, 10, '2025-01-10'),
+(196, 03, 006, 017, '15:15:00', '16:45:00', 70, 10, '2025-01-10'),
+(197, 03, 017, 008, '17:00:00', '18:30:00', 100, 10, '2025-01-10'),
+(198, 03, 008, 009, '18:45:00', '19:45:00', 110, 10, '2025-01-10'),
+(199, 03, 009, 018, '20:00:00', '20:45:00', 50, 10, '2025-01-10'),
+(200, 03, 018, 019, '21:00:00', '22:00:00', 60, 10, '2025-01-10');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `stasiun`
+-- Table structure for table `stasiun`
 --
 
 CREATE TABLE `stasiun` (
@@ -326,7 +295,7 @@ CREATE TABLE `stasiun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `stasiun`
+-- Dumping data for table `stasiun`
 --
 
 INSERT INTO `stasiun` (`idStasiun`, `nama`) VALUES
@@ -365,36 +334,7 @@ INSERT INTO `stasiun` (`idStasiun`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ticketbooked`
---
-
-CREATE TABLE `ticketbooked` (
-  `idBooked` int(11) NOT NULL,
-  `idUser` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `idPenumpang` int(11) NOT NULL,
-  `idKereta` int(2) UNSIGNED ZEROFILL NOT NULL,
-  `idStasiunAsal` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `idStasiunTujuan` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `departureTime` time NOT NULL,
-  `arrivalTime` time NOT NULL,
-  `tanggalKeberangkatan` date NOT NULL,
-  `harga` int(11) NOT NULL,
-  `waktuBooking` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `ticketbooked`
---
-
-INSERT INTO `ticketbooked` (`idBooked`, `idUser`, `idPenumpang`, `idKereta`, `idStasiunAsal`, `idStasiunTujuan`, `departureTime`, `arrivalTime`, `tanggalKeberangkatan`, `harga`, `waktuBooking`) VALUES
-(1, 001, 1, 01, 001, 003, '06:00:00', '08:15:00', '2025-01-08', 55000, '2025-01-02 16:44:00'),
-(2, 001, 2, 01, 001, 003, '06:00:00', '08:15:00', '2025-01-08', 55000, '2025-01-02 16:44:00'),
-(3, 001, 3, 01, 001, 003, '06:00:00', '08:15:00', '2025-01-08', 55000, '2025-01-02 16:44:00');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -408,44 +348,31 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`idUser`, `nama`, `email`, `gender`, `tanggalLahir`, `username`, `passwrd`) VALUES
-(001, 'Afif Kurniawan Supriyadi', 'afifksupriyadi@gmail.com', 'Laki-laki', '2024-12-28', 'afifks', 'afifks'),
-(002, 'Muhammad Fathir Arraihan', 'fathir@gmail.com', 'Laki-laki', '2024-12-01', 'fathir', 'fathir'),
-(003, 'Christoper Daeng Kilantan', 'daeng@gmail.com', 'Laki-laki', '2024-12-15', 'daeng', 'daeng'),
-(004, 'Nazhmi Ahmad Fauzan', 'nazhmi@gmail.com', 'Laki-laki', '2024-12-31', 'nazhmi', 'nazhmi'),
-(005, 'Muhammad RIbhy Rizwanul Islam', 'ribhy@gmail.com', 'Laki-laki', '2025-01-05', 'ribhy', 'ribhy');
-
--- --------------------------------------------------------
-
---
--- Struktur untuk view `adminbookedtickets`
---
-DROP TABLE IF EXISTS `adminbookedtickets`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `adminbookedtickets`  AS SELECT `u`.`idUser` AS `idUser`, `u`.`nama` AS `namaUser`, `k`.`nama` AS `namaKereta`, `k`.`idKereta` AS `nomorKereta`, `s1`.`nama` AS `stasiunAsal`, `s2`.`nama` AS `stasiunTujuan`, `tb`.`departureTime` AS `departureTime`, `tb`.`arrivalTime` AS `arrivalTime`, `tb`.`tanggalKeberangkatan` AS `tanggalKeberangkatan`, `tb`.`jumlahPenumpang` AS `jumlahPenumpang`, round(`tb`.`harga` / `k`.`hargaKereta`,0) AS `totalDistance`, `tb`.`harga` AS `harga`, `tb`.`waktuBooking` AS `waktuBooking` FROM ((((`ticketbooked` `tb` join `user` `u` on(`tb`.`idUser` = `u`.`idUser`)) join `kereta` `k` on(`tb`.`idKereta` = `k`.`idKereta`)) join `stasiun` `s1` on(`tb`.`idStasiunAsal` = `s1`.`idStasiun`)) join `stasiun` `s2` on(`tb`.`idStasiunTujuan` = `s2`.`idStasiun`)) ORDER BY `tb`.`waktuBooking` DESC, `tb`.`tanggalKeberangkatan` ASC, `tb`.`departureTime` ASC ;
+(001, 'Afif', 'afifksupriyadi@gmail.com', 'Laki-laki', '2010-02-03', 'afiffks', 'afiffks');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `kereta`
+-- Indexes for table `kereta`
 --
 ALTER TABLE `kereta`
   ADD PRIMARY KEY (`idKereta`);
 
 --
--- Indeks untuk tabel `penumpang`
+-- Indexes for table `penumpang`
 --
 ALTER TABLE `penumpang`
   ADD PRIMARY KEY (`idPenumpang`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `rute`
+-- Indexes for table `rute`
 --
 ALTER TABLE `rute`
   ADD PRIMARY KEY (`idRute`),
@@ -454,96 +381,69 @@ ALTER TABLE `rute`
   ADD KEY `idStasiunTujuan` (`idStasiunTujuan`);
 
 --
--- Indeks untuk tabel `stasiun`
+-- Indexes for table `stasiun`
 --
 ALTER TABLE `stasiun`
   ADD PRIMARY KEY (`idStasiun`),
   ADD UNIQUE KEY `nama` (`nama`);
 
 --
--- Indeks untuk tabel `ticketbooked`
---
-ALTER TABLE `ticketbooked`
-  ADD PRIMARY KEY (`idBooked`),
-  ADD KEY `idUser` (`idUser`),
-  ADD KEY `idPenumpang` (`idPenumpang`),
-  ADD KEY `idKereta` (`idKereta`),
-  ADD KEY `idStasiunAsal` (`idStasiunAsal`),
-  ADD KEY `idStasiunTujuan` (`idStasiunTujuan`);
-
---
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `kereta`
+-- AUTO_INCREMENT for table `kereta`
 --
 ALTER TABLE `kereta`
   MODIFY `idKereta` int(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `penumpang`
+-- AUTO_INCREMENT for table `penumpang`
 --
 ALTER TABLE `penumpang`
-  MODIFY `idPenumpang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPenumpang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `rute`
+-- AUTO_INCREMENT for table `rute`
 --
 ALTER TABLE `rute`
-  MODIFY `idRute` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `idRute` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
--- AUTO_INCREMENT untuk tabel `stasiun`
+-- AUTO_INCREMENT for table `stasiun`
 --
 ALTER TABLE `stasiun`
   MODIFY `idStasiun` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT untuk tabel `ticketbooked`
---
-ALTER TABLE `ticketbooked`
-  MODIFY `idBooked` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `penumpang`
+-- Constraints for table `penumpang`
 --
 ALTER TABLE `penumpang`
   ADD CONSTRAINT `penumpang_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `rute`
+-- Constraints for table `rute`
 --
 ALTER TABLE `rute`
   ADD CONSTRAINT `rute_ibfk_1` FOREIGN KEY (`idKereta`) REFERENCES `kereta` (`idKereta`),
   ADD CONSTRAINT `rute_ibfk_2` FOREIGN KEY (`idStasiunAsal`) REFERENCES `stasiun` (`idStasiun`),
   ADD CONSTRAINT `rute_ibfk_3` FOREIGN KEY (`idStasiunTujuan`) REFERENCES `stasiun` (`idStasiun`);
-
---
--- Ketidakleluasaan untuk tabel `ticketbooked`
---
-ALTER TABLE `ticketbooked`
-  ADD CONSTRAINT `ticketbooked_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`),
-  ADD CONSTRAINT `ticketbooked_ibfk_2` FOREIGN KEY (`idPenumpang`) REFERENCES `penumpang` (`idPenumpang`),
-  ADD CONSTRAINT `ticketbooked_ibfk_3` FOREIGN KEY (`idKereta`) REFERENCES `kereta` (`idKereta`),
-  ADD CONSTRAINT `ticketbooked_ibfk_4` FOREIGN KEY (`idStasiunAsal`) REFERENCES `stasiun` (`idStasiun`),
-  ADD CONSTRAINT `ticketbooked_ibfk_5` FOREIGN KEY (`idStasiunTujuan`) REFERENCES `stasiun` (`idStasiun`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
